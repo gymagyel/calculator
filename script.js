@@ -28,12 +28,8 @@ const operatorButtons = document.querySelectorAll(".btn-operator");
 const equalsButton = document.querySelector(".btn-equals-large");
 const display = document.getElementById("current");
 const historyDisplay = document.getElementById("history");
-console.log("display:", display);
-console.log("historyDisplay:", historyDisplay);
-console.log("numberButtons:", numberButtons.length);
-console.log("operatorButtons:", operatorButtons.length);
-console.log("equalsButton:", equalsButton);
-console.log("ClearBtn:", ClearBtn);
+const backBtn = document.querySelector(".btn-backspace");
+
 
 let firstNumber = null;
 let operator = null;
@@ -47,6 +43,15 @@ ClearBtn.addEventListener("click", function () {
   secondNumber = null;
 });
 
+backBtn.addEventListener("click" ,() => {
+  const currentText = display.textContent;
+
+  if (currentText.length >1){
+    display.textContent = currentText.slice (0, -1);
+  } else {
+    display.textContent = "0"
+  }
+})
 
 
 numberButtons.forEach(button => {
@@ -66,6 +71,18 @@ if (display.textContent === "0") {
 
 operatorButtons.forEach(button => {
   button.addEventListener("click", () => {
+    const newOperator = button.textContent;
+    if ( firstNumber !==null && operator !== null && display.textContent !=="0") {
+        secondNumber = Number(display.textContent);
+        const result = operate (operator, firstNumber, secondNumber);
+
+        firstNumber = result;
+        display.textContent = "0";
+        
+        historyDisplay.textContent = `${result} ${newOperator}`
+    opertor = newOperator;
+    return
+    } 
 
     firstNumber = Number(display.textContent);   
     operator = button.textContent;      
