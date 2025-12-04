@@ -26,16 +26,28 @@ body {
 }
 
 #display {
-    text-align: right;
-    padding: 25px;
-    padding-right: 20px;
-    background-color:#333;;
+    background-color: #333;
     color: white;
-    font-size: 2rem;
     border-radius: 8px;
     margin-bottom: 10px;
+    padding: 10px 15px;
+    box-sizing: border-box;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* text on the right */
+    gap: 5px;
+}
+#history {
+    font-size: 1.1rem;
+    color: #aaaaaa;
+    min-height: 20px; /* keeps space even if empty */
+}
 
+#current {
+    font-size: 2.2rem;
+    min-height: 35px;
 }
 
 .buttons {
