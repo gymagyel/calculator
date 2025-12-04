@@ -29,6 +29,8 @@ const equalsButton = document.querySelector(".btn-equals-large");
 const display = document.getElementById("current");
 const historyDisplay = document.getElementById("history");
 const backBtn = document.querySelector(".btn-backspace");
+const decimalBtn = document.querySelector(".btn-decimal");
+
 
 
 let firstNumber = null;
@@ -68,20 +70,41 @@ if (display.textContent === "0") {
   })
 })
 
+decimalBtn.addEventListener("click", () =>{
+    const currentText = display.textContent;
+
+    if (currentText.includes("."))return;
+
+    if (currentText === "0"){
+        display.textContent = "0.";
+        return
+    }
+      display.textContent = currentText + ".";
+
+})
+
 
 operatorButtons.forEach(button => {
   button.addEventListener("click", () => {
     const newOperator = button.textContent;
+    
+    if ( firstNumber !==null && operator !==null && display.textContent === "0") {
+        operator = newOperator;
+        historyDisplay.textContent = `${firstNumber} ${operator}`;
+        return
+    }
+    
+    
     if ( firstNumber !==null && operator !== null && display.textContent !=="0") {
         secondNumber = Number(display.textContent);
         const result = operate (operator, firstNumber, secondNumber);
 
         firstNumber = result;
+        opoerator = newOperator;
+        historyDisplay.textContent = `${firstNumber} ${operator}`;
         display.textContent = "0";
-        
-        historyDisplay.textContent = `${result} ${newOperator}`
-    opertor = newOperator;
-    return
+        return
+   
     } 
 
     firstNumber = Number(display.textContent);   
