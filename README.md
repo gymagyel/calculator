@@ -70,3 +70,7 @@ Improving user experience with animations
 Debugging using the console
 
 Basic responsive layout techniques
+
+## 🚀 Live Demo
+
+[JavaScript Calculator](https://gymagyel.github.io/calculator/)
