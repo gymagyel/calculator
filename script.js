@@ -14,12 +14,17 @@ function divide (a,b) {
     return a/b
 }
 
+let justCalculated = false;
+
 function operate( operator, a, b) {
 if (operator === "+") return add(a, b);
 if (operator === '-') return subtract(a, b);
 if (operator === '×') return multiply(a,b);
 if (operator === "÷") return divide(a,b);
 }
+
+
+
 
 const ClearBtn = document.querySelector(".btn-clear");
 
@@ -36,6 +41,8 @@ const decimalBtn = document.querySelector(".btn-decimal");
 let firstNumber = null;
 let operator = null;
 let secondNumber = null;
+
+
 
 ClearBtn.addEventListener("click", function () {
    display.textContent = "0";
@@ -58,7 +65,8 @@ backBtn.addEventListener("click" ,() => {
 
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
-    
+
+  
    const number = button.textContent; 
 
 
@@ -100,11 +108,18 @@ operatorButtons.forEach(button => {
         const result = operate (operator, firstNumber, secondNumber);
 
         firstNumber = result;
-        opoerator = newOperator;
+        operator = newOperator;
         historyDisplay.textContent = `${firstNumber} ${operator}`;
         display.textContent = "0";
         return
    
+        if (justCalculated) {
+  justCalculated = false;
+  operator = newOperator;
+  historyDisplay.textContent = `${firstNumber} ${operator}`;
+  display.textContent = "0";
+  return;
+}
     } 
 
     firstNumber = Number(display.textContent);   
@@ -113,6 +128,7 @@ operatorButtons.forEach(button => {
     display.textContent = "0";     
   });
 });
+
 
 equalsButton.addEventListener("click", () =>{
     if (firstNumber === null || operator === null) return;
@@ -125,4 +141,7 @@ equalsButton.addEventListener("click", () =>{
     firstNumber = result;
     operator = null;
     secondNumber = null;
+    justCalculated = true;
+   
+
 })
