@@ -1,32 +1,72 @@
-# Calculator Project
+# 🧮 JavaScript Calculator
 
-A functional on-screen calculator built with **HTML, CSS, and JavaScript** as part of The Odin Project Foundations course.
+A functional web calculator built as part of **The Odin Project**.  
+Supports keyboard input, decimal rounding, error handling, and a polished UI with hover effects.
+
+---
 
 ## ✨ Features
-- Two-line display (history + current input)
-- Basic operations: addition, subtraction, multiplication, division
-- Clear button to reset calculator
-- Backspace (⌫) button to delete last digit
-- Decimal (.) input support with prevention of multiple decimals
-- Operator switching (e.g., `5 +` → change to `5 -` without recalculating)
-- Continuous chained calculations (e.g., `3 + 4 - 2 =` → `5`)
-- Proper behavior after pressing equals (new input starts fresh)
-- Responsive grid-based layout
 
-## 🧠 What I Learned
-- DOM manipulation  
-- Handling multiple event listeners  
-- Managing state in JavaScript (`firstNumber`, `operator`, `secondNumber`, `justCalculated`)  
-- Designing calculator logic and user flow  
-- Debugging syntax, logic, and state issues  
-- Understanding how real calculators handle chained operations  
+### ✔ Basic Operations
+- Addition  
+- Subtraction  
+- Multiplication  
+- Division  
 
-## 🚧 Remaining Improvements / Future Work
-- Better floating-point rounding (avoid long decimals or `0.3000004` issues)
-- Error handling for divide-by-zero (fun or friendly warning)
-- Limit display width to prevent overflow
-- Keyboard support (numbers, operators, Enter, Escape, Backspace)
-- Visual UI polish (hover states, animations, themes)
+### ✔ Multi-Step Expression Handling
+Correctly evaluates chained operations:  
+`3 + 3 - 2 =` → `4` (not `8`)
 
-## 📁 How to Run
-Just open `index.html` in any browser. No installation required.
+### ✔ Divide-by-Zero Protection
+- Displays a friendly `"Error"` message  
+- Prevents Infinity  
+- Safely resets the calculator state  
+
+### ✔ Decimal & Rounding Support
+- Fixes JS floating-point issues (`0.1 + 0.2 = 0.3`)  
+- Rounds results to 6 decimal places  
+- Removes unnecessary trailing zeros  
+
+### ✔ Scientific Notation for Long Numbers
+Automatically switches to exponential format when numbers exceed display limits.
+
+### ✔ Full Keyboard Support
+- Numbers → type normally  
+- `+ - * /` → operators  
+- `Enter` → equals  
+- `Backspace` → delete  
+- `Escape` → clear  
+- `.` → decimal  
+
+### ✔ UI & UX Improvements
+- Smooth hover animations  
+- Pressed (active) button effect  
+- Clean layout  
+
+🛠️ Technologies Used
+
+HTML
+
+CSS
+
+JavaScript
+
+📚 What I Learned
+
+DOM manipulation
+
+Event handling for both mouse & keyboard
+
+Managing calculator state (firstNumber, secondNumber, operator, justCalculated)
+
+Handling floating-point number issues in JavaScript
+
+Using helper functions to keep logic clean
+
+Creating error states (DIV0)
+
+Improving user experience with animations
+
+Debugging using the console
+
+Basic responsive layout techniques
