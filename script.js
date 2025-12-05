@@ -1,26 +1,32 @@
+
+function roundResult(num) {
+  return parseFloat(num.toFixed(6)); // removes trailing zeros too
+}
 function add(a, b){
     return a+b
 }
 
 function subtract(a, b) {
-    return a - b
+    return roundResult (a - b)
 }
 
 function multiply (a,b) {
-    return a * b
+    return roundResult (a * b)
 }
 
 function divide (a,b) {
-    return a/b
-}
+    return roundResult (a/b)
 
+}
 let justCalculated = false;
 
 function operate( operator, a, b) {
 if (operator === "+") return add(a, b);
 if (operator === '-') return subtract(a, b);
 if (operator === '×') return multiply(a,b);
-if (operator === "÷") return divide(a,b);
+if (operator === "÷") {
+  if (b === 0) return "DIV0";
+  return divide(a,b);}
 }
 
 
@@ -131,17 +137,42 @@ operatorButtons.forEach(button => {
 
 
 equalsButton.addEventListener("click", () =>{
-    if (firstNumber === null || operator === null) return;
+    if (firstNumber === "" || operator === null) return;
 
     secondNumber = Number (display.textContent);
-    const result = operate(operator, firstNumber, secondNumber);
-      historyDisplay.textContent = `${firstNumber} ${operator} ${secondNumber} =`; // 5 + 6 =
-  display.textContent = result;      
+    const result = operate(operator,firstNumber, secondNumber);
+  console.log("=", { firstNumber, operator, secondNumber, result }); // debug
 
-    firstNumber = result;
-    operator = null;
-    secondNumber = null;
-    justCalculated = true;
-   
 
-})
+    if (result === "DIV0") {
+  display.textContent = "Error";
+  historyDisplay.textContent = "Cannot divide by 0";
+ 
+
+  // Reset calculator state
+  firstNumber = "";
+  secondNumber = "";
+  operator = null;
+  justCalculated = true;
+  return
+
+    }
+
+    historyDisplay.textContent = `${firstNumber} ${operator} ${secondNumber} =`;
+
+  const rounded = roundResult(result);   // ensure clean value here too
+  let displayString = rounded.toString();
+
+  // Only use scientific notation if the number is REALLY too big/small
+  if (Math.abs(rounded) >= 1e10 || (Math.abs(rounded) > 0 && Math.abs(rounded) < 1e-6)) {
+    displayString = rounded.toExponential(6);
+  }
+
+  display.textContent = displayString;
+
+  firstNumber = rounded;
+  operator = null;
+  secondNumber = null;
+  justCalculated = true;
+});
+
