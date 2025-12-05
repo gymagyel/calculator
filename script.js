@@ -1,4 +1,11 @@
 
+function clickButtonWithText(text) {
+  const button = Array.from(document.querySelectorAll("button"))
+    .find(btn => btn.textContent.trim() === text.trim());
+  if (button) button.click();
+}
+
+
 function roundResult(num) {
   return parseFloat(num.toFixed(6)); // removes trailing zeros too
 }
@@ -141,7 +148,6 @@ equalsButton.addEventListener("click", () =>{
 
     secondNumber = Number (display.textContent);
     const result = operate(operator,firstNumber, secondNumber);
-  console.log("=", { firstNumber, operator, secondNumber, result }); // debug
 
 
     if (result === "DIV0") {
@@ -176,3 +182,55 @@ equalsButton.addEventListener("click", () =>{
   justCalculated = true;
 });
 
+document.addEventListener("keydown", (e) => {
+  
+
+  // NUMBERS 0–9
+  if (e.key >= "0" && e.key <= "9") {
+    clickButtonWithText(e.key);
+    return;
+  }
+
+  // DECIMAL
+  if (e.key === ".") {
+    decimalBtn.click();
+    return;
+  }
+
+  // OPERATORS + -
+  if (e.key === "+" || e.key === "-") {
+    clickButtonWithText(e.key);
+    return;
+  }
+
+  // MULTIPLY (*) → × button
+  if (e.key === "*" || e.key === "x") {
+    clickButtonWithText("×");
+    return;
+  }
+
+  // DIVIDE (/) → ÷ button
+  if (e.key === "/") {
+    clickButtonWithText("÷");
+    return;
+  }
+
+  // ENTER or = → trigger equals
+  if (e.key === "Enter" || e.key === "=") {
+    e.preventDefault();  
+    equalsButton.click();
+    return;
+  }
+
+  // BACKSPACE → delete
+  if (e.key === "Backspace") {
+    backBtn.click();
+    return;
+  }
+
+  // ESC → CLEAR
+  if (e.key === "Escape") {
+    ClearBtn.click();
+    return;
+  }
+});
