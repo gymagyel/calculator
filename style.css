@@ -54,6 +54,7 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 8px;
+
     
     
 
@@ -70,4 +71,48 @@ button{
     font-size: 1.5rem;
     padding: 25px;
     border-radius: 8px;
+      transition: 
+    background-color 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+.btn-number,
+.btn-operator,
+.btn-decimal,
+.btn-clear,
+.btn-backspace,
+.btn-equals-large {
+  cursor: pointer;
+}
+
+/* Hover effect */
+.btn-number:hover,
+.btn-operator:hover,
+.btn-decimal:hover,
+.btn-clear:hover,
+.btn-backspace:hover,
+.btn-equals-large:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  filter: brightness(1.05); /* slightly lighter */
+}
+
+.btn-number:active,
+.btn-operator:active,
+.btn-decimal:active,
+.btn-clear:active,
+.btn-backspace:active,
+.btn-equals-large:active {
+  transform: translateY(0);              /* goes back down */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2); /* smaller shadow */
+  filter: brightness(0.97);              /* slightly darker */
+}
+.btn-equals-large {
+  background-color: #ff9500;
+  color: white;
+  font-weight: 600;
+}
+
+.btn-equals-large:hover {
+  filter: brightness(1.1);
 }
